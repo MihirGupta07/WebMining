@@ -11,9 +11,9 @@ test_set = ["What is machine learning"]  # Query
 stopWords = stopwords.words('english')
 
 vectorizer = CountVectorizer(stop_words=stopWords)
-# print vectorizer
+# print("vectorizer: ", vectorizer)
 transformer = TfidfTransformer()
-# print transformer
+# print("transformer ", transformer)
 
 trainVectorizerArray = vectorizer.fit_transform(train_set).toarray()
 testVectorizerArray = vectorizer.transform(test_set).toarray()
@@ -23,11 +23,11 @@ def cx(a, b): return round(np.inner(a, b)/(LA.norm(a)*LA.norm(b)), 3)
 
 
 for vector in trainVectorizerArray:
-    print(vector)
+    print("vector", vector)
     for testV in testVectorizerArray:
-        print(testV)
+        print("testV", testV)
         cosine = cx(vector, testV)
-        print("Cosone sim: ", cosine)
+        print("Cosine sim: ", cosine)
 
 transformer.fit(trainVectorizerArray)
 print(transformer.transform(trainVectorizerArray).toarray())
